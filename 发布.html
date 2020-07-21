@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>vue练习</title>
+    <style type="text/css">
+        *{
+            padding: 0;
+            margin:0;
+        }
+        .box{
+            text-align: center;
+        }
+        .box>span{
+            color: red;
+            font-size: 18px;
+        }
+        .table-top{
+            margin-top: 20px;
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        .table-content{
+            margin:0 auto;
+        }
+        .table-content span{
+            background: #ff9900;
+            padding: 0 6px;
+            color: #fff;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<body>
+    <div id="box" class="box">
+    <div class="table-top">
+        <input type="text" v-model="searchVal"><button>搜索</button>
+    </div>
+    <table border="1px" class="table-content">
+        <tr>
+            <th>日期</th>
+            <th>简称</th>
+            <th>类型</th>
+            <th>名称</th>
+            <th>主体</th>
+            <th>债项</th>
+            <th>期限</th>
+            <th>规模</th>
+            <th>担保</th>
+            <th>条款</th>
+            <th>行业</th>
+        </tr>
+        <tr v-for='(item, key) in list'>
+            <td>{{item.date}}</td>
+            <td>{{item.jc}}</td>
+            <td>{{item.type}}</td>
+            <td>{{item.mc}}</td>
+            <td>{{item.rate}}</td>
+            <td>{{item.rate_zx}}</td>
+            <td>{{item.term}}</td>
+            <td>{{item.scale}}</td>
+            <td>{{item.gura}}</td>
+            <td>{{item.clause}}</td>
+            <td>{{item.indus}}</td>
+        </tr>
+    </table>
+    </div>
+</body>
+
+<script type="text/javascript">
+    var myVue = new Vue({
+        el:'#box',
+        data:{
+            goodsList:[
+                            {
+                                "date": "1899/12/30",
+                                "jc": "20平融01",
+                                "type": "私募债",
+                                "mc": "平顶山市融城发展投资集团有限公司",
+                                "rate": "无",
+                                "rate_zx": "无",
+                                "term": "3+2",
+                                "scale": 7.0,
+                                "gura": "无",
+                                "clause": "回售,调整票面利率",
+                                "indus": "建筑与工程"
+                            },
+                            {
+                                "date": "2020/07/16",
+                                "jc": "20中信建投CP010",
+                                "type": "证券公司短期融资券",
+                                "mc": "中信建投证券股份有限公司",
+                                "rate": "AAA",
+                                "rate_zx": "A-1",
+                                "term": 0.2493,
+                                "scale": 40.0,
+                                "gura": "无",
+                                "clause": "无",
+                                "indus": "投资银行业与经纪业"
+                            },
+                            {
+                                "date": "2020/07/16",
+                                "jc": "20北部湾MTN003",
+                                "type": "一般中期票据",
+                                "mc": "广西北部湾国际港务集团有限公司",
+                                "rate": "AAA",
+                                "rate_zx": "AAA",
+                                "term": 3,
+                                "scale": 10.0,
+                                "gura": "无",
+                                "clause": "无",
+                                "indus": "海港与服务"
+                            },
+                            {
+                                "date": "2020/07/16",
+                                "jc": "20珠海港股MTN001",
+                                "type": "一般中期票据",
+                                "mc": "珠海港股份有限公司",
+                                "rate": "AA+",
+                                "rate_zx": "AA+",
+                                "term": 3,
+                                "scale": 3.0,
+                                "gura": "无",
+                                "clause": "无",
+                                "indus": "海港与服务"
+                            },
+                            {
+                                "date": "2020/07/16",
+                                "jc": "20淮安高新MTN002",
+                                "type": "一般中期票据",
+                                "mc": "淮安高新控股有限公司",
+                                "rate": "AA",
+                                "rate_zx": "AA",
+                                "term": 3,
+                                "scale": 3.0,
+                                "gura": "无",
+                                "clause": "无",
+                                "indus": "建筑与工程"
+                            },
+                            {
+                                "date": "2020/07/16",
+                                "jc": "20鄂能源MTN002",
+                                "type": "一般中期票据",
+                                "mc": "湖北能源集团股份有限公司",
+                                "rate": "AAA",
+                                "rate_zx": "AAA",
+                                "term": 3,
+                                "scale": 8.0,
+                                "gura": "无",
+                                "clause": "无",
+                                "indus": "电力"
+                            },
+                            {
+                                "date": "2020/07/16",
+                                "jc": "20慈湖高新MTN001",
+                                "type": "一般中期票据",
+                                "mc": "马鞍山慈湖高新技术产业开发区投资发展有限公司",
+                                "rate": "AA",
+                                "rate_zx": "AA",
+                                "term": "3+2",
+                                "scale": 3.0,
+                                "gura": "无",
+                                "clause": "调整票面利率,回售,交叉保护",
+                                "indus": "建筑与工程"
+                            },
+                            {
+                                "date": "2020/07/16",
+                                "jc": "20梅山岛MTN001",
+                                "type": "一般中期票据",
+                                "mc": "宁波梅山岛开发投资有限公司",
+                                "rate": "AA+",
+                                "rate_zx": "AA+",
+                                "term": 3,
+                                "scale": 8.0,
+                                "gura": "无",
+                                "clause": "无",
+                                "indus": "建筑与工程"
+                            },
+                            {
+                                "date": "2020/07/16",
+                                "jc": "20深圳地铁MTN002",
+                                "type": "一般中期票据",
+                                "mc": "深圳市地铁集团有限公司",
+                                "rate": "AAA",
+                                "rate_zx": "AAA",
+                                "term": 3,
+                                "scale": 30.0,
+                                "gura": "无",
+                                "clause": "无",
+                                "indus": "铁路运输"
+                            },
+                            {
+                                "date": "2020/07/16",
+                                "jc": "20桐交01",
+                                "type": "私募债",
+                                "mc": "桐庐县交通发展集团有限公司",
+                                "rate": "AA",
+                                "rate_zx": "AA",
+                                "term": 3,
+                                "scale": 6.0,
+                                "gura": "桐庐县国有资本投资运营控股集团有限公司",
+                                "clause": "无",
+                                "indus": "综合类行业"
+                            },
+                            {
+                                "date": "2020/07/16",
+                                "jc": "20张江一",
+                                "type": "一般公司债",
+                                "mc": "上海张江(集团)有限公司",
+                                "rate": "AAA",
+                                "rate_zx": "AAA",
+                                "term": "3+2",
+                                "scale": 12.0,
+                                "gura": "无",
+                                "clause": "回售,调整票面利率",
+                                "indus": "综合类行业"
+                            },
+                            {
+                                "date": "2020/07/16",
+                                "jc": "20洞庭管廊02",
+                                "type": "一般企业债",
+                                "mc": "湖南洞庭资源控股集团有限公司",
+                                "rate": "AA",
+                                "rate_zx": "AAA",
+                                "term": 7,
+                                "scale": 4.3,
+                                "gura": "重庆兴农融资担保集团有限公司",
+                                "clause": "债券提前偿还",
+                                "indus": "建材"
+                            },
+                            {
+                                "date": "2020/07/16",
+                                "jc": "20洞庭管廊02",
+                                "type": "一般企业债",
+                                "mc": "湖南洞庭资源控股集团有限公司",
+                                "rate": "AA",
+                                "rate_zx": "AAA",
+                                "term": 7,
+                                "scale": 4.3,
+                                "gura": "重庆兴农融资担保集团有限公司",
+                                "clause": "债券提前偿还",
+                                "indus": "建材"
+                            },
+                            {
+                                "date": "2020/07/16",
+                                "jc": "20阳谷祥光CP001",
+                                "type": "一般短期融资券",
+                                "mc": "阳谷祥光铜业有限公司",
+                                "rate": "AA",
+                                "rate_zx": "A-1",
+                                "term": 1,
+                                "scale": 5.0,
+                                "gura": "无",
+                                "clause": "交叉保护",
+                                "indus": "贵金属与矿石"
+                            },
+                            {
+                                "date": "2020/07/16",
+                                "jc": "20启东D1",
+                                "type": "私募债",
+                                "mc": "启东市城市建设投资开发有限公司",
+                                "rate": "AA+",
+                                "rate_zx": "无",
+                                "term": 1,
+                                "scale": 20.0,
+                                "gura": "无",
+                                "clause": "无",
+                                "indus": "建筑与工程"
+                            },
+                            {
+                                "date": "2020/07/16",
+                                "jc": "20津城建MTN007",
+                                "type": "一般中期票据",
+                                "mc": "天津城市基础设施建设投资集团有限公司",
+                                "rate": "AAA",
+                                "rate_zx": "AAA",
+                                "term": 3,
+                                "scale": 10.0,
+                                "gura": "无",
+                                "clause": "无",
+                                "indus": "综合类行业"
+                            },
+                            {
+                                "date": "2020/07/17",
+                                "jc": "20茅山01",
+                                "type": "私募债",
+                                "mc": "江苏金坛茅山旅游度假区发展有限公司",
+                                "rate": "无",
+                                "rate_zx": "无",
+                                "term": "2+1",
+                                "scale": 5.0,
+                                "gura": "常州市金坛区建设资产经营有限公司",
+                                "clause": "控制权变更,调整票面利率,回售",
+                                "indus": "建筑与工程"
+                            },
+                            {
+                                "date": "2020/07/17",
+                                "jc": "20海通证券CP006",
+                                "type": "证券公司短期融资券",
+                                "mc": "海通证券股份有限公司",
+                                "rate": "AAA",
+                                "rate_zx": "A-1",
+                                "term": 0.2384,
+                                "scale": 40.0,
+                                "gura": "无",
+                                "clause": "无",
+                                "indus": "投资银行业与经纪业"
+                            },
+                            {
+                                "date": "2020/07/20",
+                                "jc": "20碧海02",
+                                "type": "私募债",
+                                "mc": "毕节市碧海新区建设投资有限责任公司",
+                                "rate": "AA",
+                                "rate_zx": "无",
+                                "term": "2+2+1",
+                                "scale": 18.0,
+                                "gura": "毕节市开源建设投资(集团)有限公司",
+                                "clause": "回售,调整票面利率",
+                                "indus": "建筑与工程"
+                            },
+                            {
+                                "date": "2020/07/20",
+                                "jc": "20渤海证券CP007",
+                                "type": "证券公司短期融资券",
+                                "mc": "渤海证券股份有限公司",
+                                "rate": "AAA",
+                                "rate_zx": "A-1",
+                                "term": 0.2493,
+                                "scale": 20.0,
+                                "gura": "无",
+                                "clause": "无",
+                                "indus": "投资银行业与经纪业"
+                            },
+                            {
+                                "date": "2020/07/20",
+                                "jc": "20天风证券CP005",
+                                "type": "证券公司短期融资券",
+                                "mc": "天风证券股份有限公司",
+                                "rate": "AAA",
+                                "rate_zx": "A-1",
+                                "term": 0.2493,
+                                "scale": 10.0,
+                                "gura": "无",
+                                "clause": "无",
+                                "indus": "投资银行业与经纪业"
+                            }
+            ],
+            searchVal:'',    //默认输入为空
+
+        },
+        methods:{
+        },
+        // 通过计算属性过滤数据
+        computed:{
+            list: function() {
+                var _this = this;
+                // 筛选
+                var arrGoods = [];
+                for (var i = 0;i < this.goodsList.length; i++)
+                {
+                    // 如果匹配成功, 向空数组添加数据
+                    if (this.goodsList[i].mc.search(this.searchVal) != -1) {
+                        arrGoods.push(this.goodsList[i]);
+                    }
+                }
+                return arrGoods;
+            },
+
+        }
+    });
+</script>
+</html>
