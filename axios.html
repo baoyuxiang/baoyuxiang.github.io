@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:v-on="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://cdn.bootcss.com/vue/2.2.2/vue.min.js"></script>
+    <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+{#    <script src="vue.js" type="text/javascript" charset="utf-8"></script>#}
+{#    <script src="axios.min.js" type="text/javascript" charset="utf-8"></script>#}
+</head>
+<body>
+    <div id="bao">
+        <div>
+          <input type="text" v-model="searchVal"><button>搜索</button>
+             <input type="button" value="按钮"  v-on:click="show">
+        </div>
+        <table border="1px" class="table-content">
+            <tr>
+                <th>代码</th>
+                <th>简称</th>
+                <th>类型</th>
+                <th>名称</th>
+            </tr>
+            <tr v-for="content in info">
+                <td>{{ content.code }}</td>
+                <td>{{ content.jc }}</td>
+                <td>{{ content.type }}</td>
+                <td>{{ content.name }}</td>
+            </tr>
+         </table>
+    </div>
+</body>
+<script type="text/javascript">
+    var vm =new Vue({
+            el: "#bao",
+            data: {
+                info: null,
+                searchVal:'',
+                mytitle:'This is mytitle',//默认输入为空
+            },
+            methods: {
+                qingqiu: function () {
+                    axios
+                        .get('demo.json')
+                        .then(response => (this.info = response.data.sites))
+                        .catch(function (error) {
+                            console.log(error) });
+                },
+                 show:function(){
+                    alert("hello world");
+                }
+            },
+
+            computed:{
+                list: function() {
+                    var _this = this;
+                    // 筛选
+                    var arrGoods = [];
+                    for (var i = 0;i < this.info.length; i++)
+                    {
+                        // 如果匹配成功, 向空数组添加数据
+                        if (this.info[i].name.search(this.searchVal) != -1) {
+                            arrGoods.push(this.info[i]);
+                        }
+                    }
+                    return arrGoods;
+                },
+        }
+
+        })
+    vm.qingqiu()
+</script>
+
+</html>
